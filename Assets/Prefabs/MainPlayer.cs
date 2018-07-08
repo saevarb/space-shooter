@@ -13,17 +13,26 @@ public class MainPlayer : MonoBehaviour {
         var dronePos = new Vector3(2, 0, 0) + transform.position;
         GameObject drone = Instantiate(dronePrefab, dronePos, Quaternion.identity) as GameObject; 
         var d = drone.GetComponent<Drone>();
-        d.playerShip = gameObject;
         Debug.Log($"Instantiating drone at {dronePos}");
         drones.Add(d);
     }
 
-    void Update () {
+    void Update (){
+       var a = Input.GetKeyDown("i");
+        if (a)
+        {
+            var dronePos = new Vector3(2, 0, 0) + transform.position;
+            GameObject drone = Instantiate(dronePrefab, dronePos, Quaternion.identity) as GameObject;
+            var d = drone.GetComponent<Drone>();
+            drones.Add(d);
+        }
     }
+
 
     void FixedUpdate() {
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
+        Debug.Log($"{x},{y}");
 
         Rigidbody2D body = GetComponent<Rigidbody2D>();
         body.AddForce(speed * new Vector2(x, y));

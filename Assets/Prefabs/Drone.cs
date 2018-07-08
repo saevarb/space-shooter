@@ -10,7 +10,8 @@ enum State {
 }
 
 public class Drone : MonoBehaviour {
-    public GameObject playerShip;
+    private GameObject playerShip;
+    public LineRenderer lineRenderer;
 
     private GameObject target;
 
@@ -23,6 +24,7 @@ public class Drone : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Debug.Log($"Drone starting {state}");
+        playerShip = GameObject.Find("playerShip");
     }
 
     // Update is called once per frame
@@ -32,6 +34,11 @@ public class Drone : MonoBehaviour {
             case State.Idling: {
                 break;
             }
+            case State.MiningAsteroid: {
+                lineRenderer.SetPositions(new Vector3[] { transform.position, target.transform.position });
+                break;
+            }
+
             case State.MovingToTarget: {
                 var heading = target.transform.position - transform.position;
                 if (heading.sqrMagnitude <= orbitDistance * orbitDistance) {
@@ -42,6 +49,7 @@ public class Drone : MonoBehaviour {
             default:
                 break;
         }
+        
     }
 
     public void MovetoTarget(GameObject obj)
