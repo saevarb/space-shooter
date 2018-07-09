@@ -65,6 +65,7 @@ public class Drone : MonoBehaviour {
     {
         target = obj;
         state = State.MovingToTarget;
+        weapon.StopFiring();
     }
 
     void Idle() {

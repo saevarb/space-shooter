@@ -8,11 +8,15 @@ abstract public class Weapon : MonoBehaviour {
     protected float weaponCooldown;
     protected float weaponDamage;
     protected float weaponTimer;
+    protected bool weaponFiring;
+    protected bool weaponEnabled;
 	// Use this for initialization
+    abstract public void FireWeapon(GameObject target);
+    abstract public void StopFiring();
+
 	void Start () {
 		
 	}
-    abstract public void FireWeapon(GameObject target);
 	
 	// Update is called once per frame
 	void Update () {

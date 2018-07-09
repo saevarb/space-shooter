@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75364c911c1d3434c91a189d46390656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aliveTimer: 1
+  aliveTimer: 2.03
   speed: 30
 --- !u!222 &222624143474934712
 CanvasRenderer:
