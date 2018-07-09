@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Asteroid : MonoBehaviour {
-    public GameObject playerShip;
+    private GameObject playerShip;
 
     // Use this for initialization
     void Start () {

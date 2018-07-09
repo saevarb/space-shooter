@@ -9,12 +9,17 @@ public class Laser : Weapon {
 
     private LineRenderer laserRenderer;
 
-    void Start() {
+    void Awake() {
         laserRenderer = gameObject.AddComponent<LineRenderer>();
         laserRenderer.startWidth = .03f;
         laserRenderer.endWidth = .03f;
+        laserRenderer.material = Resources.Load("laserMaterial", typeof(Material)) as Material;
+        Debug.Log(laserRenderer.material); 
         weaponFiring = false;
         weaponTimer = 0;
+    }
+
+    void Start() {
     }
 
     void Update() {
@@ -50,6 +55,7 @@ public class Laser : Weapon {
     }
 
     public override void StopFiring() {
+        Debug.Log(laserRenderer);
         laserRenderer.enabled = false;
         weaponFiring = false;
         weaponTimer = 0;

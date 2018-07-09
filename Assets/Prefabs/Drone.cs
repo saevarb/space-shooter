@@ -2,7 +2,7 @@
 using UnityEngine;
 
 enum State {
-    Idling,
+    Idle,
     MiningAsteroid,
     AttackingTarget,
     MovingToTarget,
@@ -18,9 +18,8 @@ public class Drone : MonoBehaviour {
     public float orbitSpeed = 2f;
     public float speed = 2f;
 
-    private float laserTimer;
     private float orbitAngle;
-    private State state = State.Idling;
+    private State state = State.Idle;
     public Weapon weapon;
 
     // Use this for initialization
@@ -38,10 +37,10 @@ public class Drone : MonoBehaviour {
 
         if(target == null)
         {
-            state = State.Idling;
+            MovetoTarget(playerShip);
         }
         switch(state) {
-            case State.Idling: {
+            case State.Idle: {
                 break;
             }
             case State.MiningAsteroid: {
@@ -52,7 +51,20 @@ public class Drone : MonoBehaviour {
             case State.MovingToTarget: {
                 var heading = target.transform.position - transform.position;
                 if (heading.sqrMagnitude <= orbitDistance * orbitDistance) {
-                    state = State.MiningAsteroid;
+                    switch(target.tag) {
+                        case "Player": {
+                            state = State.Idle;
+                            break;
+                        }
+                        case "Mineable": {
+                            state = State.MiningAsteroid;
+                            break;
+                        }
+                        case "Enemy": {
+                            state = State.AttackingTarget;
+                            break;
+                        }
+                    }
                 }
                 break;
             }
@@ -79,10 +91,11 @@ public class Drone : MonoBehaviour {
 
     void FixedUpdate() {
         if (target == null) {
-            state = State.Idling;
+            MovetoTarget(playerShip);
         }
+
         switch (state) {
-            case State.Idling:
+            case State.Idle:
                 Idle();
                 break;
             case State.MovingToTarget:

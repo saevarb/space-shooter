@@ -16,9 +16,7 @@ public class Killable : MonoBehaviour {
         GameObject tObj = Instantiate(dmgText.gameObject) as GameObject;
         Text t = tObj.GetComponent<Text>();
         t.text = $"-{dmg}";
-        Debug.Log(transform.position);
         tObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
-        Debug.Log(tObj.transform.position);
         tObj.transform.SetParent(dmgCanvas.transform);
 
         hp -= dmg;
