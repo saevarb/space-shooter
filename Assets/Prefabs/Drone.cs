@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using UnityEngine;
 
 enum State {
@@ -24,18 +24,24 @@ public class Drone : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Debug.Log($"Drone starting {state}");
-        playerShip = GameObject.Find("playerShip");
+        playerShip = GameObject.Find("mainPlayer");
+        Debug.Log(playerShip);
+        // lineRenderer.startWidth = 0.1f;
+        // lineRenderer.endWidth = 0.1f;
     }
 
     // Update is called once per frame
     void Update () {
         orbitAngle += orbitSpeed * Time.deltaTime;
+        lineRenderer.enabled = false;
         switch(state) {
             case State.Idling: {
                 break;
             }
             case State.MiningAsteroid: {
-                lineRenderer.SetPositions(new Vector3[] { transform.position, target.transform.position });
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, target.transform.position);
+                lineRenderer.enabled = true;
                 break;
             }
 
@@ -49,7 +55,6 @@ public class Drone : MonoBehaviour {
             default:
                 break;
         }
-        
     }
 
     public void MovetoTarget(GameObject obj)

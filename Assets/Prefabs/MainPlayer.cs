@@ -18,7 +18,9 @@ public class MainPlayer : MonoBehaviour {
     }
 
     void Update (){
-       var a = Input.GetKeyDown("i");
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.LookAt(mouse, Vector3.back);
+        var a = Input.GetKeyDown("i");
         if (a)
         {
             var dronePos = new Vector3(2, 0, 0) + transform.position;
@@ -28,13 +30,12 @@ public class MainPlayer : MonoBehaviour {
         }
     }
 
-
     void FixedUpdate() {
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
-        Debug.Log($"{x},{y}");
 
         Rigidbody2D body = GetComponent<Rigidbody2D>();
+
         body.AddForce(speed * new Vector2(x, y));
     }
 

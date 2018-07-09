@@ -73,7 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526ea68d5a86a409f80989dd7f5c8c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dronePrefab: {fileID: 0}
+  dronePrefab: {fileID: 1701285874013604, guid: 41666815a961446babd3bffc2f4928a2,
+    type: 2}
 --- !u!212 &212556950437611150
 SpriteRenderer:
   m_ObjectHideFlags: 1
