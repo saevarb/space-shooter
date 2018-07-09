@@ -11,37 +11,41 @@ enum State {
 
 public class Drone : MonoBehaviour {
     private GameObject playerShip;
-    public LineRenderer lineRenderer;
 
     private GameObject target;
 
+    public float orbitDistance = 2f;
+    public float orbitSpeed = 2f;
+    public float speed = 2f;
+
+    private float laserTimer;
     private float orbitAngle;
-    private float orbitDistance = 2f;
-    private float orbitSpeed = 2f;
-    private float speed = 2f;
     private State state = State.Idling;
+    public Weapon weapon;
 
     // Use this for initialization
     void Start () {
         Debug.Log($"Drone starting {state}");
         playerShip = GameObject.Find("mainPlayer");
-        Debug.Log(playerShip);
         // lineRenderer.startWidth = 0.1f;
         // lineRenderer.endWidth = 0.1f;
+        weapon = gameObject.AddComponent<Laser>();
     }
 
     // Update is called once per frame
     void Update () {
         orbitAngle += orbitSpeed * Time.deltaTime;
-        lineRenderer.enabled = false;
+
+        if(target == null)
+        {
+            state = State.Idling;
+        }
         switch(state) {
             case State.Idling: {
                 break;
             }
             case State.MiningAsteroid: {
-                lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, target.transform.position);
-                lineRenderer.enabled = true;
+                weapon.FireWeapon(target);
                 break;
             }
 
@@ -73,7 +77,10 @@ public class Drone : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        switch(state) {
+        if (target == null) {
+            state = State.Idling;
+        }
+        switch (state) {
             case State.Idling:
                 Idle();
                 break;

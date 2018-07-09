@@ -74,7 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87f54e4a12184b34a75600956509718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 120292034789092730}
+  orbitDistance: 2
+  orbitSpeed: 2
+  speed: 2
+  laserDuration: 0.75
+  laserCooldown: 1
+  laserDamage: 0.1
 --- !u!120 &120292034789092730
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -115,7 +120,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.96
+    widthMultiplier: 0.03
     widthCurve:
       serializedVersion: 2
       m_Curve:

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4104286298673420}
   - component: {fileID: 212404862103738364}
   - component: {fileID: 114206502406930952}
+  - component: {fileID: 114819197704820782}
   - component: {fileID: 61731202175090988}
   m_Layer: 0
   m_Name: asteroid
@@ -79,7 +80,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShip: {fileID: 0}
-  dmgText: {fileID: 114227345895212252, guid: 53280a285522243c7a0706e86c4c8e83, type: 2}
+--- !u!114 &114819197704820782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581291349974660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d2e8afd2a946b49af004151103d442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
+  dmgText: {fileID: 114179348928988082, guid: a23f3a069278e1142805c8503863fa8b, type: 2}
 --- !u!212 &212404862103738364
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -60,7 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\IKillable.cs" />
+    <Compile Include="Assets\Behaviors\Killable.cs" />
+    <Compile Include="Assets\Behaviors\Laser.cs" />
+    <Compile Include="Assets\Behaviors\Weapon.cs" />
     <Compile Include="Assets\Prefabs\Asteroid.cs" />
     <Compile Include="Assets\Prefabs\DmgText.cs" />
     <Compile Include="Assets\Prefabs\Drone.cs" />
