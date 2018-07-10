@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114270005000056990}
   - component: {fileID: 50745673401783182}
   - component: {fileID: 61433185176808414}
+  - component: {fileID: 208628147745848042}
+  - component: {fileID: 114097410610415830}
   m_Layer: 0
   m_Name: drone
   m_TagString: Untagged
@@ -88,6 +90,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114097410610415830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1701285874013604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114270005000056990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,10 +115,25 @@ MonoBehaviour:
   weapon: {fileID: 0}
   orbitDistance: 2
   orbitSpeed: 2
-  maxSpeed: 4
-  turningSpeed: 4
+  maxSpeed: 6
+  turningSpeed: 6
   state: 0
   heading: {x: 0, y: 0, z: 0}
+--- !u!208 &208628147745848042
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1701285874013604}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!212 &212065428984512302
 SpriteRenderer:
   m_ObjectHideFlags: 1

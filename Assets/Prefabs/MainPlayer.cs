@@ -11,7 +11,7 @@ public class MainPlayer : MonoBehaviour {
     void Start () {
         drones = new List<Drone>();
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 1; i++) {
             GameObject drone = Instantiate(dronePrefab) as GameObject;
             var d = drone.GetComponent<Drone>();
             Debug.Log($"Instantiating drone");

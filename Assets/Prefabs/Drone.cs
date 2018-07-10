@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Drone : MonoBehaviour {
@@ -24,6 +25,17 @@ public class Drone : MonoBehaviour {
     private GameObject playerShip;
     private GameObject target;
     public Vector3 heading;
+    private List<Vector3> path;
+
+    public GameObject currentTarget {
+        get {
+            return target;
+        }
+
+        set {
+            target = value;
+        }
+    }
 
 
     // Use this for initialization
@@ -39,15 +51,14 @@ public class Drone : MonoBehaviour {
         transform.position = playerShip.GetComponent<Rigidbody2D>().position + Random.insideUnitCircle * orbitDistance;
     }
     void Start () {
-        target = playerShip;
+        currentTarget = playerShip;
         state = State.Idle;
     }
 
     // Update is called once per frame
     void Update () {
-
         Debug.DrawRay(transform.position, 0.5f * heading.normalized, Color.red);
-        if(target == null)
+        if(currentTarget == null)
         {
             MovetoTarget(playerShip);
         }
@@ -61,14 +72,14 @@ public class Drone : MonoBehaviour {
                 break;
             }
             case State.MiningAsteroid: {
-                weapon.FireWeapon(target);
+                weapon.FireWeapon(currentTarget);
                 break;
             }
 
             case State.MovingToTarget: {
                 if (InRangeOfTarget()) {
-                    Debug.Log($"In range of target {target.tag}");
-                    switch (target.tag) {
+                    Debug.Log($"In range of target {currentTarget.tag}");
+                    switch (currentTarget.tag) {
                         case "Player": {
                             state = State.Idle;
                             break;
@@ -94,16 +105,18 @@ public class Drone : MonoBehaviour {
     }
 
     private bool InRangeOfTarget() {
-        if (target == null) return false;
+        if (currentTarget == null) return false;
 
-        var heading = target.transform.position - transform.position;
+        var heading = currentTarget.transform.position - transform.position;
         return heading.sqrMagnitude <= orbitDistance * orbitDistance;
     }
 
     public void MovetoTarget(GameObject obj)
     {
-        target = obj;
+        currentTarget = obj;
         state = State.MovingToTarget;
+        Pathfinder p = GetComponent<Pathfinder>();
+        path = p.FindPath(obj.transform.position);
         weapon.StopFiring();
     }
 
@@ -116,7 +129,6 @@ public class Drone : MonoBehaviour {
         var heading = pos - transform.position;
         if(InRangeOfTarget()) {
             var newHeading = new Vector3(heading.y, -heading.x).normalized;
-            Debug.DrawRay(transform.position, newHeading);
             MoveToPoint(newHeading);
         } else {
             MoveToPoint(pos);
@@ -124,7 +136,7 @@ public class Drone : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (target == null) {
+        if (currentTarget == null) {
             MovetoTarget(playerShip);
         }
 
@@ -136,7 +148,7 @@ public class Drone : MonoBehaviour {
                 MoveToTarget();
                 break;
             case State.MiningAsteroid:
-                OrbitPosition(target.transform.position);
+                OrbitPosition(currentTarget.transform.position);
                 break;
             default:
                 Idle();
@@ -145,10 +157,10 @@ public class Drone : MonoBehaviour {
     }
 
     private void MoveToTarget() {
-        if (target == null) {
-            target = playerShip;
+        if (currentTarget == null) {
+            currentTarget = playerShip;
         }
-        var targetDirection = target.transform.position - transform.position;
+        var targetDirection = currentTarget.transform.position - transform.position;
         MoveToPoint(targetDirection);
 
     }
@@ -160,3 +172,4 @@ public class Drone : MonoBehaviour {
         body.velocity = body.velocity.normalized / (body.velocity.magnitude / maxSpeed);
     }
 }
+

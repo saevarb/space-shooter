@@ -60,18 +60,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Behaviors\Debugger.cs" />
     <Compile Include="Assets\Behaviors\Killable.cs" />
     <Compile Include="Assets\Behaviors\Laser.cs" />
+    <Compile Include="Assets\Behaviors\Pathfinder.cs" />
     <Compile Include="Assets\Behaviors\Weapon.cs" />
     <Compile Include="Assets\Prefabs\Asteroid.cs" />
     <Compile Include="Assets\Prefabs\DmgText.cs" />
     <Compile Include="Assets\Prefabs\Drone.cs" />
     <Compile Include="Assets\Prefabs\MainPlayer.cs" />
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids.Editor">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Runtime">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Triangle.Runtime">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.2D.Triangle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -267,6 +296,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq">
+      <HintPath>C:/Users/saeva/Documents/space-shooter/Assets/Plugins/MoreLinq.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/saeva/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
