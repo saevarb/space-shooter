@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61731202175090988}
   m_Layer: 0
   m_Name: asteroid
-  m_TagString: Untagged
+  m_TagString: Mineable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d15bc265d54309bb32c80ac1e2f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerShip: {fileID: 0}
 --- !u!114 &114819197704820782
 MonoBehaviour:
   m_ObjectHideFlags: 1

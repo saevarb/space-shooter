@@ -10,11 +10,13 @@ public class MainPlayer : MonoBehaviour {
 
     void Start () {
         drones = new List<Drone>();
-        var dronePos = new Vector3(2, 0, 0) + transform.position;
-        GameObject drone = Instantiate(dronePrefab, dronePos, Quaternion.identity) as GameObject; 
-        var d = drone.GetComponent<Drone>();
-        Debug.Log($"Instantiating drone at {dronePos}");
-        drones.Add(d);
+
+        for(int i = 0; i < 5; i++) {
+            GameObject drone = Instantiate(dronePrefab) as GameObject;
+            var d = drone.GetComponent<Drone>();
+            Debug.Log($"Instantiating drone");
+            drones.Add(d);
+        }
     }
 
     void Update (){
@@ -23,8 +25,7 @@ public class MainPlayer : MonoBehaviour {
         var a = Input.GetKeyDown("i");
         if (a)
         {
-            var dronePos = new Vector3(2, 0, 0) + transform.position;
-            GameObject drone = Instantiate(dronePrefab, dronePos, Quaternion.identity) as GameObject;
+            GameObject drone = Instantiate(dronePrefab) as GameObject;
             var d = drone.GetComponent<Drone>();
             drones.Add(d);
         }

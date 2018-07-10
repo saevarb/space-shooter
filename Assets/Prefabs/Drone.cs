@@ -1,46 +1,63 @@
 ﻿
 using UnityEngine;
 
-enum State {
-    Idle,
-    MiningAsteroid,
-    AttackingTarget,
-    MovingToTarget,
-    BackToShip
-}
-
 public class Drone : MonoBehaviour {
-    private GameObject playerShip;
+    public enum State {
+        Idle,
+        MiningAsteroid,
+        AttackingTarget,
+        MovingToTarget,
+        BackToShip
+    }
 
-    private GameObject target;
+    public Weapon weapon;
 
     public float orbitDistance = 2f;
     public float orbitSpeed = 2f;
-    public float speed = 2f;
+    public float maxSpeed = 4f;
+    public float turningSpeed = 4f;
+
 
     private float orbitAngle;
-    private State state = State.Idle;
-    public Weapon weapon;
+    public State state = State.Idle;
+    private Rigidbody2D body;
+    private GameObject playerShip;
+    private GameObject target;
+    public Vector3 heading;
+
 
     // Use this for initialization
-    void Start () {
+    private void Awake() {
         Debug.Log($"Drone starting {state}");
         playerShip = GameObject.Find("mainPlayer");
         // lineRenderer.startWidth = 0.1f;
         // lineRenderer.endWidth = 0.1f;
         weapon = gameObject.AddComponent<Laser>();
+        body =  GetComponent<Rigidbody2D>();
+        // The drone starts pointing upwards
+        heading = new Vector2(0, 1);
+        transform.position = playerShip.GetComponent<Rigidbody2D>().position + Random.insideUnitCircle * orbitDistance;
+    }
+    void Start () {
+        target = playerShip;
+        state = State.Idle;
     }
 
     // Update is called once per frame
     void Update () {
-        orbitAngle += orbitSpeed * Time.deltaTime;
 
+        Debug.DrawRay(transform.position, 0.5f * heading.normalized, Color.red);
         if(target == null)
         {
             MovetoTarget(playerShip);
         }
+
+        State oldState = state;
         switch(state) {
             case State.Idle: {
+                if (!InRangeOfTarget()) {
+                    state = State.MovingToTarget;
+                }
                 break;
             }
             case State.MiningAsteroid: {
@@ -49,9 +66,9 @@ public class Drone : MonoBehaviour {
             }
 
             case State.MovingToTarget: {
-                var heading = target.transform.position - transform.position;
-                if (heading.sqrMagnitude <= orbitDistance * orbitDistance) {
-                    switch(target.tag) {
+                if (InRangeOfTarget()) {
+                    Debug.Log($"In range of target {target.tag}");
+                    switch (target.tag) {
                         case "Player": {
                             state = State.Idle;
                             break;
@@ -65,12 +82,24 @@ public class Drone : MonoBehaviour {
                             break;
                         }
                     }
+                } else {
+                    Debug.Log("Not in range of target");
                 }
                 break;
             }
             default:
                 break;
         }
+        if(oldState != state) {
+            Debug.Log($"Switched from {oldState} to {state}");
+        }
+    }
+
+    private bool InRangeOfTarget() {
+        if (target == null) return false;
+
+        var heading = target.transform.position - transform.position;
+        return heading.sqrMagnitude <= orbitDistance * orbitDistance;
     }
 
     public void MovetoTarget(GameObject obj)
@@ -86,7 +115,14 @@ public class Drone : MonoBehaviour {
     }
 
     private void OrbitPosition(Vector3 pos) {
-        transform.position = pos + orbitDistance * new Vector3(Mathf.Cos(orbitAngle), Mathf.Sin(orbitAngle), 0);
+        var heading = pos - transform.position;
+        if(InRangeOfTarget()) {
+            var newHeading = new Vector3(heading.y, -heading.x).normalized;
+            Debug.DrawRay(transform.position, newHeading);
+            MoveToPoint(newHeading);
+        } else {
+            MoveToPoint(pos);
+        }
     }
 
     void FixedUpdate() {
@@ -114,9 +150,15 @@ public class Drone : MonoBehaviour {
         if (target == null) {
             target = playerShip;
         }
-        var tpos = target.transform.position;
-        var heading = tpos - transform.position;
+        var targetDirection = target.transform.position - transform.position;
+        MoveToPoint(targetDirection);
 
-        transform.position += heading.normalized * speed * Time.deltaTime; 
+    }
+
+    private void MoveToPoint(Vector3 targetDirection) {
+        var newHeading = Vector3.RotateTowards(heading, targetDirection, turningSpeed * Time.fixedDeltaTime, 0);
+        heading = newHeading;
+        body.AddForce(new Vector2(heading.x, heading.y).normalized, ForceMode2D.Impulse);
+        body.velocity = body.velocity.normalized / (body.velocity.magnitude / maxSpeed);
     }
 }
