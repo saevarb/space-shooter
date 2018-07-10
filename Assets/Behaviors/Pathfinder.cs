@@ -17,7 +17,7 @@ public class Pathfinder : MonoBehaviour {
     private List<Vector3> GenerateNeighbors(Vector3 cur) {
         List<Vector3> neighbors = new List<Vector3>();
         for(float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / 10) {
-            Vector3 v = 0.5f * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            Vector3 v = 0.8f * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             //Debug.DrawRay(cur, v, Color.green);
             neighbors.Add(cur + v);
         }
@@ -69,13 +69,17 @@ public class Pathfinder : MonoBehaviour {
                 RaycastHit2D[] results = new RaycastHit2D[100];
                 int hitCount = Physics2D.Raycast(new Vector2(current.x, current.y), new Vector2(neighbor.x, neighbor.y), filter, results, neighDist);
                 if(hitCount > 0) {
+                    bool skipPoint = false;
                     for(int i = 0; i < hitCount; i++) {
                         if (results[i].collider.tag == "Mineable") {
                             Debug.Log($"Got raycast hit at {results[i].collider.name}");
                             closedSet.Add(neighbor);
-                            continue;
+                            skipPoint = true;
+                            break;
                         }
                     }
+                    if (skipPoint)
+                        continue;
                 }
                 if(!openSet.Contains(neighbor)) {
                     openSet.Add(neighbor);
