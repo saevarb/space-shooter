@@ -6,18 +6,22 @@ using UnityEngine;
 using MoreLinq;
 
 public class Pathfinder : MonoBehaviour {
+    [Range(1, 60)]
+    public int neighborCount = 5;
+    [Range(.1f, 3)]
+    public float stepSize = 1;
 
-    HashSet<Vector3> closedSet;
-    List<Vector3> openSet;
-    Dictionary<Vector3, Vector3> cameFrom;
-    Dictionary<Vector3, float> gScore;
-    Dictionary<Vector3, float> fScore;
+    private HashSet<Vector3> closedSet;
+    private List<Vector3> openSet;
+    private Dictionary<Vector3, Vector3> cameFrom;
+    private Dictionary<Vector3, float> gScore;
+    private Dictionary<Vector3, float> fScore;
     private Debugger debugger;
     // Use this for initialization
     private List<Vector3> GenerateNeighbors(Vector3 cur) {
         List<Vector3> neighbors = new List<Vector3>();
-        for(float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / 10) {
-            Vector3 v = 0.8f * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        for(float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / neighborCount) {
+            Vector3 v = stepSize * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
             //Debug.DrawRay(cur, v, Color.green);
             neighbors.Add(cur + v);
         }
@@ -48,7 +52,7 @@ public class Pathfinder : MonoBehaviour {
         debugger.Clear();
         while(openSet.Count != 0) {
             current = openSet.MinBy(x => GetScore(fScore, x)).First();
-            if(Vector3.SqrMagnitude(current - dest) <= 2 * 2f) {
+            if(Vector3.SqrMagnitude(current - dest) <= 1) {
                 return ReconstructPath(current);
             }
             openSet.Remove(current);
@@ -107,6 +111,7 @@ public class Pathfinder : MonoBehaviour {
         for(int i = 1; i < path.Count; i++) {
             debugger.DrawLine(path[i - 1], path[i], Color.cyan);
         }
+        path.Reverse();
         return path;
     }
 

@@ -43,7 +43,8 @@ public class HpDisplay : MonoBehaviour {
 	}
     private void OnDestroy() {
         if(killable != null) {
-            Destroy(hpText.gameObject);
+            if(hpText != null)
+                Destroy(hpText.gameObject);
         }
     }
 }

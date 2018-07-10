@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : Weapon {
-    public new float weaponDuration = 0.75f;
-    public new float weaponCooldown = 0.3f;
-    public new float weaponDamage = 0.1f;
 
     private LineRenderer laserRenderer;
 
@@ -16,6 +13,9 @@ public class Laser : Weapon {
         laserRenderer.material = Resources.Load("laserMaterial", typeof(Material)) as Material;
         weaponFiring = false;
         weaponTimer = 0;
+        weaponDuration = 0.75f;
+        weaponCooldown = 0.3f;
+        weaponDamage = 0.1f;
     }
 
     void Start() {

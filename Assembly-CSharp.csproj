@@ -64,7 +64,9 @@
     <Compile Include="Assets\Behaviors\HpDisplay.cs" />
     <Compile Include="Assets\Behaviors\Killable.cs" />
     <Compile Include="Assets\Behaviors\Laser.cs" />
+    <Compile Include="Assets\Behaviors\Navigator.cs" />
     <Compile Include="Assets\Behaviors\Pathfinder.cs" />
+    <Compile Include="Assets\Behaviors\PhysicsMover.cs" />
     <Compile Include="Assets\Behaviors\Weapon.cs" />
     <Compile Include="Assets\Prefabs\Asteroid.cs" />
     <Compile Include="Assets\Prefabs\DmgText.cs" />

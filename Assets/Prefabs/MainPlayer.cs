@@ -43,7 +43,7 @@ public class MainPlayer : MonoBehaviour {
     public void SetTarget(GameObject obj) {
         Debug.Log("Setting target");
         foreach(Drone d in drones) {
-            d.MovetoTarget(obj);
+            d.MoveToTarget(obj);
         }
     }
 }
