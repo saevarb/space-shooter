@@ -7,18 +7,39 @@ public class Killable : MonoBehaviour {
 
     public float hp;
     public Text dmgText;
-    // Use this for iprivate nitialization
-    public void ApplyDamage(float dmg)
-    {
+    private Text lastText = null;
+    private float? lastDamageTime;
+    private float? lastDamage = null;
+
+    private void CreateDamageNumber(float dmg) {
         GameObject canvasObject = GameObject.Find("dmgCanvas");
         Canvas dmgCanvas = canvasObject.GetComponent<Canvas>();
-
         GameObject tObj = Instantiate(dmgText.gameObject) as GameObject;
         Text t = tObj.GetComponent<Text>();
         t.text = $"-{dmg}";
         tObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
         tObj.transform.SetParent(dmgCanvas.transform);
+        lastText = t;
+        lastDamageTime = Time.time;
+        lastDamage = dmg;
+    }
 
+    public void ApplyDamage(float dmg)
+    {
+        if(lastDamageTime != null && lastText != null) {
+            float timeSinceLastDamage = Time.time - (float)lastDamageTime;
+            if(timeSinceLastDamage <= 3) {
+                lastDamage += dmg;
+                lastText.text = $"-{lastDamage}";
+                lastDamageTime = Time.time;
+            } else {
+                Debug.Log($"Creating damage numbers because delay was {timeSinceLastDamage}");
+                CreateDamageNumber(dmg);
+            }
+        } else {
+            Debug.Log("Creating damage numbers because no last time");
+            CreateDamageNumber(dmg);
+        }
         hp -= dmg;
         if(hp <= 0) Kill();
     }
