@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Behaviors\Debugger.cs" />
+    <Compile Include="Assets\Behaviors\HpDisplay.cs" />
     <Compile Include="Assets\Behaviors\Killable.cs" />
     <Compile Include="Assets\Behaviors\Laser.cs" />
     <Compile Include="Assets\Behaviors\Pathfinder.cs" />
