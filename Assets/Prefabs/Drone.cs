@@ -53,11 +53,11 @@ public class Drone : MonoBehaviour {
         }
 
         State oldState = state;
+        if (!InRangeOfTarget()) {
+            state = State.MovingToTarget;
+        }
         switch(state) {
             case State.Idle: {
-                if (!InRangeOfTarget()) {
-                    state = State.MovingToTarget;
-                }
                 break;
             }
             case State.MiningAsteroid: {
@@ -82,9 +82,7 @@ public class Drone : MonoBehaviour {
                             break;
                         }
                     }
-                } else {
-                    Debug.Log("Not in range of target");
-                }
+                } 
                 break;
             }
             default:

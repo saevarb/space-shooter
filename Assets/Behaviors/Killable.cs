@@ -16,7 +16,7 @@ public class Killable : MonoBehaviour {
         Canvas dmgCanvas = canvasObject.GetComponent<Canvas>();
         GameObject tObj = Instantiate(dmgText.gameObject) as GameObject;
         Text t = tObj.GetComponent<Text>();
-        t.text = $"-{dmg}";
+        t.text = $"-{dmg.ToString("0.0")}";
         tObj.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1, 0));
         tObj.transform.SetParent(dmgCanvas.transform);
         lastText = t;
@@ -30,7 +30,7 @@ public class Killable : MonoBehaviour {
             float timeSinceLastDamage = Time.time - (float)lastDamageTime;
             if(timeSinceLastDamage <= 3) {
                 lastDamage += dmg;
-                lastText.text = $"-{lastDamage}";
+                lastText.text = "-" + lastDamage?.ToString("0.0");
                 lastDamageTime = Time.time;
             } else {
                 Debug.Log($"Creating damage numbers because delay was {timeSinceLastDamage}");
