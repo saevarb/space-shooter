@@ -4,7 +4,7 @@ using UnityEngine;
 public class MainPlayer : MonoBehaviour {
     public GameObject dronePrefab;
 
-    private float speed = 10f;
+    private float maxSpeed = 10f;
 
     private List<Drone> drones;
 
@@ -37,7 +37,9 @@ public class MainPlayer : MonoBehaviour {
 
         Rigidbody2D body = GetComponent<Rigidbody2D>();
 
-        body.AddForce(speed * new Vector2(x, y));
+        body.AddForce(new Vector2(x, y).normalized);
+        if(body.velocity != Vector2.zero && body.velocity.magnitude > maxSpeed)
+            body.velocity = body.velocity.normalized / (body.velocity.magnitude / maxSpeed);
     }
 
     public void SetTarget(GameObject obj) {

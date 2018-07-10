@@ -15,7 +15,6 @@ public class Drone : MonoBehaviour {
     public PhysicsMover mover;
     public Navigator navigator;
     public State state = State.Idle;
-    private Rigidbody2D body;
     private GameObject playerShip;
 
     public GameObject currentTarget { get; set; }
@@ -25,7 +24,7 @@ public class Drone : MonoBehaviour {
     private void Awake() {
         Debug.Log($"Drone starting {state}");
         playerShip = GameObject.Find("mainPlayer");
-        body =  GetComponent<Rigidbody2D>();
+        Rigidbody2D body = GetComponent<Rigidbody2D>();
         transform.position = playerShip.GetComponent<Rigidbody2D>().position + Random.insideUnitCircle * navigator.orbitDistance;
     }
     void Start () {
@@ -43,6 +42,9 @@ public class Drone : MonoBehaviour {
         State oldState = state;
         switch(state) {
             case State.Idle: {
+                if(!navigator.HasArrived()) {
+                    navigator.SetDestination(playerShip.transform);
+                }
                 break;
             }
             case State.MiningAsteroid: {

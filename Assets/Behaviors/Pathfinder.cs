@@ -10,6 +10,7 @@ public class Pathfinder : MonoBehaviour {
     public int neighborCount = 5;
     [Range(.1f, 3)]
     public float stepSize = 1;
+    public bool debug = false;
 
     private HashSet<Vector3> closedSet;
     private List<Vector3> openSet;
@@ -60,7 +61,8 @@ public class Pathfinder : MonoBehaviour {
 
 
             List<Vector3> neighbors = GenerateNeighbors(current);
-            debugger.DrawPoints(neighbors, Color.green);
+            if(debug)
+                debugger.DrawPoints(neighbors, Color.green);
             foreach (Vector3 neighbor in neighbors) {
                 if(closedSet.Contains(neighbor)) {
                     continue;
@@ -108,8 +110,10 @@ public class Pathfinder : MonoBehaviour {
             current = (Vector3)cameFrom[current];
             path.Add(current);
         }
-        for(int i = 1; i < path.Count; i++) {
-            debugger.DrawLine(path[i - 1], path[i], Color.cyan);
+        if(debug) {
+            for (int i = 1; i < path.Count; i++) {
+                debugger.DrawLine(path[i - 1], path[i], Color.cyan);
+            }
         }
         path.Reverse();
         return path;

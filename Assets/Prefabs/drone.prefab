@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212065428984512302}
   - component: {fileID: 114270005000056990}
   - component: {fileID: 50745673401783182}
-  - component: {fileID: 114097410610415830}
   - component: {fileID: 60925143390689280}
   m_Layer: 0
   m_Name: drone
@@ -91,17 +90,6 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: -0.4330127, y: -0.25000003}
       - {x: 0.43301272, y: -0.24999996}
---- !u!114 &114097410610415830
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1701285874013604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114270005000056990
 MonoBehaviour:
   m_ObjectHideFlags: 1

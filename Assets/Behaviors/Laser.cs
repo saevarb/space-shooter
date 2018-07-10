@@ -5,7 +5,9 @@ using UnityEngine;
 public class Laser : Weapon {
 
     private LineRenderer laserRenderer;
-
+    //public new float weaponDuration = 0.75f;
+    //public new float weaponCooldown = 0.3f;
+    //public new float weaponDamage = 0.1f;
     void Awake() {
         laserRenderer = gameObject.AddComponent<LineRenderer>();
         laserRenderer.startWidth = .03f;
@@ -13,9 +15,7 @@ public class Laser : Weapon {
         laserRenderer.material = Resources.Load("laserMaterial", typeof(Material)) as Material;
         weaponFiring = false;
         weaponTimer = 0;
-        weaponDuration = 0.75f;
-        weaponCooldown = 0.3f;
-        weaponDamage = 0.1f;
+      
     }
 
     void Start() {

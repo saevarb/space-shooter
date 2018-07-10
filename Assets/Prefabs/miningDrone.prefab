@@ -21,8 +21,11 @@ GameObject:
   - component: {fileID: 4203769412057788}
   - component: {fileID: 212872352623378964}
   - component: {fileID: 114501341913632934}
+  - component: {fileID: 114409379208800858}
+  - component: {fileID: 114577867527572068}
+  - component: {fileID: 114473139814760058}
+  - component: {fileID: 114677937506509682}
   - component: {fileID: 50622469361815620}
-  - component: {fileID: 114212069125239310}
   - component: {fileID: 60237699450122564}
   m_Layer: 0
   m_Name: miningDrone
@@ -91,7 +94,7 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: -0.4330127, y: -0.25000003}
       - {x: 0.43301272, y: -0.24999996}
---- !u!114 &114212069125239310
+--- !u!114 &114409379208800858
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,9 +102,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1825898499449770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
+  m_Script: {fileID: 11500000, guid: 20072d78619c3c944a4d05451a9d21f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponDuration: 0.16
+  weaponCooldown: 0.3
+  weaponDamage: 1
+--- !u!114 &114473139814760058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825898499449770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bfc7453d2ca884bacafecc613f267c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathfinder: {fileID: 114677937506509682}
+  mover: {fileID: 114577867527572068}
+  arrivalDistance: 1
+  orbitDistance: 2
+  pathRecalculateTimer: 1
 --- !u!114 &114501341913632934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,10 +135,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87f54e4a12184b34a75600956509718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  mover: {fileID: 0}
-  navigator: {fileID: 0}
+  weapon: {fileID: 114409379208800858}
+  mover: {fileID: 114577867527572068}
+  navigator: {fileID: 114473139814760058}
   state: 0
+--- !u!114 &114577867527572068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825898499449770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5528e25a594d544a6d84e98da25142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitDistance: 2
+  orbitSpeed: 2
+  maxSpeed: 4
+  turningSpeed: 4
+  debug: 1
+--- !u!114 &114677937506509682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825898499449770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighborCount: 8
+  stepSize: 0.5
 --- !u!212 &212872352623378964
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -152,7 +203,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70705956071324088ac6bba4ae1f8c8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cfd0589e7487dfc469c713cd3218a926, type: 3}
   m_Color: {r: 0.9339623, g: 0.066082224, b: 0.066082224, a: 1}
   m_FlipX: 0
   m_FlipY: 0

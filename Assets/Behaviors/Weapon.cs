@@ -4,9 +4,9 @@ using UnityEngine;
 
 abstract public class Weapon : MonoBehaviour {
 
-    protected float weaponDuration;
-    protected float weaponCooldown;
-    protected float weaponDamage;
+    public float weaponDuration;
+    public float weaponCooldown;
+    public float weaponDamage;
     protected float weaponTimer;
     protected bool weaponFiring;
     protected bool weaponEnabled;

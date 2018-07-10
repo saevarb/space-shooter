@@ -33,3 +33,7 @@ sysinfo.txt
 *.apk
 *.unitypackage
 bin/
+/space-shooter_Data
+/UnityPlayer.dll
+/UnityCrashHandler64.exe
+/space-shooter.exe

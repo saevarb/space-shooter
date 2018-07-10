@@ -9,10 +9,12 @@ public class Navigator : MonoBehaviour {
     public PhysicsMover mover;
     public float arrivalDistance = 2f;
     public float orbitDistance = 2f;
+    public float pathRecalculateTimer = 1f;
 
-    private Vector3 destination;
+    private Transform destination;
     private Vector3 curNode;
     private List<Vector3> curPath;
+    private float updateTimer;
 
     private bool isActive_;
 
@@ -24,8 +26,8 @@ public class Navigator : MonoBehaviour {
     }
 
     public bool HasArrived() {
-        if (!isActive_) return false;
-        return CloseTo(destination);
+        if (destination == null) return false;
+        return CloseTo(destination.position);
     }
 
     private bool CloseTo(Vector3 pos) {
@@ -47,9 +49,9 @@ public class Navigator : MonoBehaviour {
         //}
     }
 
-    public void SetDestination(Vector3 target) {
+    public void SetDestination(Transform target) {
         destination = target;
-        curPath = pathfinder.FindPath(destination);
+        curPath = pathfinder.FindPath(destination.position);
         if (curPath == null)
             return;
         curNode = curPath[0];
@@ -58,7 +60,7 @@ public class Navigator : MonoBehaviour {
     }
 
     public void SetDestination(GameObject target) {
-        SetDestination(target.transform.position);
+        SetDestination(target.transform);
     }
 
     private void ResetState() {
@@ -67,10 +69,20 @@ public class Navigator : MonoBehaviour {
     }
 
     void Start () {
-		
 	}
-	
-	void FixedUpdate () {
+
+    private void Update() {
+        updateTimer += Time.deltaTime;
+
+        if(updateTimer >= pathRecalculateTimer) {
+            updateTimer = 0;
+            if(isActive) {
+                SetDestination(destination);
+            }
+        }
+    }
+
+    void FixedUpdate () {
         if (!isActive || curPath == null)
             return;
         if(!HasArrived() && curPath.Count == 0) {
