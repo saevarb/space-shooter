@@ -78,7 +78,6 @@ public class Pathfinder : MonoBehaviour {
                     bool skipPoint = false;
                     for(int i = 0; i < hitCount; i++) {
                         if (results[i].collider.tag == "Mineable") {
-                            Debug.Log($"Got raycast hit at {results[i].collider.name}");
                             closedSet.Add(neighbor);
                             skipPoint = true;
                             break;

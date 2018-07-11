@@ -123,7 +123,7 @@ MonoBehaviour:
   mover: {fileID: 114577867527572068}
   arrivalDistance: 1
   orbitDistance: 2
-  pathRecalculateTimer: 1
+  pathRecalculateTimer: 4
 --- !u!114 &114501341913632934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighborCount: 8
   stepSize: 0.5
+  debug: 1
 --- !u!212 &212872352623378964
 SpriteRenderer:
   m_ObjectHideFlags: 1

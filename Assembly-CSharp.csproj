@@ -72,6 +72,7 @@
     <Compile Include="Assets\Prefabs\DmgText.cs" />
     <Compile Include="Assets\Prefabs\Drone.cs" />
     <Compile Include="Assets\Prefabs\MainPlayer.cs" />
+    <None Include="Assets\Galaxia Sprite Pack #1\README.txt" />
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>C:/Users/saeva/Documents/space-shooter/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
