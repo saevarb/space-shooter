@@ -23,6 +23,7 @@ public class PhysicsMover : MonoBehaviour {
         heading = newHeading;
         body.AddForce(new Vector2(heading.x, heading.y).normalized, ForceMode2D.Impulse);
         body.velocity = body.velocity.normalized / (body.velocity.magnitude / maxSpeed);
+        AdjustRotation();
     }
 
 	// Use this for initialization
@@ -30,12 +31,19 @@ public class PhysicsMover : MonoBehaviour {
         heading = new Vector2(0, 1);
         body = GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void AdjustRotation() {
+        if (heading.x != 0f)
+            body.rotation = heading.y / heading.x * Mathf.Rad2Deg;
+    }
+
+    // Update is called once per frame
+    void Update () {
         if(debug) {
             Debug.DrawRay(transform.position, 0.5f * heading.normalized, Color.red);
         }
-		
 	}
+    private void FixedUpdate() {
+        AdjustRotation();
+    }
 }

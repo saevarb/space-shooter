@@ -5,6 +5,8 @@ TextureImporter:
     21300000: LaserSpriteSheetGreen_0
     21300002: LaserSpriteSheetGreen_1
     21300004: LaserSpriteSheetGreen_2
+    21300006: LaserSpriteSheetGreen_3
+    21300008: LaserSpriteSheetGreen_4
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -74,26 +76,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LaserSpriteSheetGreen_0
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 0
-        width: 18
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0233dbac4dd1b604a8a68bdc8500a9ad
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: LaserSpriteSheetGreen_1
       rect:
         serializedVersion: 2
@@ -101,8 +83,8 @@ TextureImporter:
         y: 0
         width: 18
         height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -113,30 +95,10 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: LaserSpriteSheetGreen_2
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 53
-        width: 18
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02f49a3d56050ad489bf3d70fbafe9c2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c0573e55c20bedc46a1ed39aed6c5eff
     vertices: []
     indices: 
     edges: []
