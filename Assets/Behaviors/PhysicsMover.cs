@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PhysicsMover : MonoBehaviour {
 
-    [Range(1, 5)]
-    public float orbitDistance = 2f;
-    [Range(.1f, 20)]
-    public float orbitSpeed = 2f;
     [Range(1, 10)]
     public float maxSpeed = 4f;
     [Range(1, 10)]
@@ -26,8 +22,13 @@ public class PhysicsMover : MonoBehaviour {
         AdjustRotation();
     }
 
-	// Use this for initialization
-	void Start () {
+    public void Break() {
+        body.AddForce(body.velocity * -1 * 0.8f, ForceMode2D.Impulse);
+        AdjustRotation();
+    }
+
+    // Use this for initialization
+    void Start () {
         heading = new Vector2(0, 1);
         body = GetComponent<Rigidbody2D>();
 	}

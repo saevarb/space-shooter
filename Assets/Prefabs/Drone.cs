@@ -24,7 +24,7 @@ public class Drone : MonoBehaviour {
     private void Awake() {
         Debug.Log($"Drone starting {state}");
         playerShip = GameObject.Find("mainPlayer");
-        transform.position = playerShip.GetComponent<Rigidbody2D>().position + UnityEngine.Random.insideUnitCircle * navigator.orbitDistance;
+        transform.position = playerShip.GetComponent<Rigidbody2D>().position + UnityEngine.Random.insideUnitCircle * 1.5f;
     }
     void Start () {
         currentTarget = playerShip;
@@ -41,13 +41,13 @@ public class Drone : MonoBehaviour {
         State oldState = state;
         switch(state) {
             case State.Idle: {
-                if(!navigator.HasArrived()) {
+                if(!navigator.hasArrived) {
                     MoveToTarget(playerShip);
                 }
                 break;
             }
             case State.MovingToTarget: {
-                if (navigator.isActive && navigator.HasArrived()) {
+                if (navigator.isActive && navigator.hasArrived) {
                     Debug.Log($"In range of target {currentTarget.tag}");
                     switch (currentTarget.tag) {
                         case "Player": {
@@ -76,13 +76,13 @@ public class Drone : MonoBehaviour {
 
     private void MineAsteroid() {
         state = State.MiningAsteroid;
-        navigator.OrbitPosition(currentTarget);
+        navigator.OrbitPosition(currentTarget, weapon.weaponRange);
         weapon.StartFiring(currentTarget);
     }
 
     private void AttackTarget() {
         state = State.AttackingTarget;
-        navigator.OrbitPosition(currentTarget);
+        navigator.OrbitPosition(currentTarget, weapon.weaponRange);
         weapon.StartFiring(currentTarget);
     }
 
@@ -91,10 +91,10 @@ public class Drone : MonoBehaviour {
         if(currentTarget != obj) {
             currentTarget = obj;
             state = State.MovingToTarget;
-            navigator.SetDestination(currentTarget);
+            navigator.SetDestination(currentTarget, weapon.weaponRange);
         } else {
             if (!navigator.isActive)
-                navigator.SetDestination(currentTarget);
+                navigator.SetDestination(currentTarget, weapon.weaponRange);
         }
         weapon.StopFiring();
     }

@@ -77,7 +77,7 @@ public class Pathfinder : MonoBehaviour {
                 if(hitCount > 0) {
                     bool skipPoint = false;
                     for(int i = 0; i < hitCount; i++) {
-                        if (results[i].collider.tag == "Mineable") {
+                        if (results[i].collider.tag != "Drone") {
                             closedSet.Add(neighbor);
                             skipPoint = true;
                             break;
@@ -108,11 +108,6 @@ public class Pathfinder : MonoBehaviour {
         while(cameFrom.ContainsKey(current)) {
             current = (Vector3)cameFrom[current];
             path.Add(current);
-        }
-        if(debug) {
-            for (int i = 1; i < path.Count; i++) {
-                debugger.DrawLine(path[i - 1], path[i], Color.cyan);
-            }
         }
         path.Reverse();
         return path;

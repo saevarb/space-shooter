@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 58781219561576800}
   m_Layer: 0
   m_Name: miningDrone
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,11 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5528e25a594d544a6d84e98da25142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitDistance: 2
-  orbitSpeed: 2
-  maxSpeed: 4
+  maxSpeed: 5.73
   turningSpeed: 4
-  debug: 0
+  debug: 1
 --- !u!114 &114677937506509682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighborCount: 8
-  stepSize: 0.5
+  neighborCount: 6
+  stepSize: 0.32
   debug: 1
 --- !u!212 &212872352623378964
 SpriteRenderer:
