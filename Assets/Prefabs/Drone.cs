@@ -41,7 +41,9 @@ public class Drone : MonoBehaviour {
         State oldState = state;
         switch(state) {
             case State.Idle: {
-                if(!navigator.hasArrived) {
+                if (!navigator.isActive) {
+                    Idle();
+                } else if(!navigator.hasArrived) {
                     MoveToTarget(playerShip);
                 }
                 break;
@@ -76,13 +78,13 @@ public class Drone : MonoBehaviour {
 
     private void MineAsteroid() {
         state = State.MiningAsteroid;
-        navigator.OrbitPosition(currentTarget, weapon.weaponRange);
+        navigator.Orbit(currentTarget, weapon.weaponRange);
         weapon.StartFiring(currentTarget);
     }
 
     private void AttackTarget() {
         state = State.AttackingTarget;
-        navigator.OrbitPosition(currentTarget, weapon.weaponRange);
+        navigator.Orbit(currentTarget, weapon.weaponRange);
         weapon.StartFiring(currentTarget);
     }
 
@@ -100,6 +102,9 @@ public class Drone : MonoBehaviour {
     }
 
     void Idle() {
+        state = State.Idle;
+        navigator.Orbit(playerShip, 1f);
+        weapon.StopFiring();
     }
 
 

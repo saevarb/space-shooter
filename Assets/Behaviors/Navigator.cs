@@ -53,11 +53,15 @@ public class Navigator : MonoBehaviour {
         return heading.sqrMagnitude <= arrivalDistance * arrivalDistance;
     }
 
-    public void OrbitPosition(GameObject target, float orbitDistance) {
-        OrbitPosition(target.transform.position, orbitDistance);
+    public void Orbit(GameObject target, float orbitDistance) {
+        Orbit(target.transform.position, orbitDistance);
     }
 
-    public void OrbitPosition(Vector3 pos, float orbitDistance) {
+    public void Orbit(Transform target, float orbitDistance) {
+        Orbit(target.position, orbitDistance);
+    }
+
+    public void Orbit(Vector3 pos, float orbitDistance) {
         var heading = pos - transform.position;
         List<Vector3> orbitPoints = new List<Vector3>();
         for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / 16) {
@@ -73,6 +77,7 @@ public class Navigator : MonoBehaviour {
         pathInit.AddRange(pathTail);
         curPath = new Queue<Vector3>(pathInit);
         curNode = curPath.Dequeue();
+        curPath.Enqueue(curNode);
         targetPoint = pathInit.Last();
         navState = NavState.Orbiting;
         arrivalDistance = 0.5f * Vector3.Distance(orbitPoints[0], orbitPoints[1]);
