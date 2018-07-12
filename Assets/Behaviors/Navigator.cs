@@ -76,7 +76,6 @@ public class Navigator : MonoBehaviour {
     }
 
     public void Orbit(Vector3 pos, float orbitDistance) {
-        var heading = pos - transform.position;
         List<Vector3> orbitPoints = new List<Vector3>();
         for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / 16) {
             Vector3 v = orbitDistance * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
@@ -99,7 +98,7 @@ public class Navigator : MonoBehaviour {
     }
 
     public void SetDestination(Transform target, float arrDist) {
-        curPath = new Queue<Vector3>(pathfinder.FindPath(target.position));
+        curPath = pathfinder.FindPath(target.position);
         if (curPath == null)
             return;
         destination = target;
@@ -115,7 +114,7 @@ public class Navigator : MonoBehaviour {
 
     public void SetDestination(Vector3 target, float arrDist) {
         navState = NavState.MovingToPoint;
-        curPath = new Queue<Vector3>(pathfinder.FindPath(target));
+        curPath = pathfinder.FindPath(target);
         if (curPath == null)
             return;
         isActive_ = true;
