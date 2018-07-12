@@ -6,7 +6,7 @@ public class PhysicsMover : MonoBehaviour {
 
     [Range(1, 10)]
     public float maxSpeed = 4f;
-    [Range(1, 10)]
+    [Range(1, 20)]
     public float turningSpeed = 4f;
     public bool debug = false;
 
@@ -23,7 +23,7 @@ public class PhysicsMover : MonoBehaviour {
     }
 
     public void Break() {
-        body.AddForce(body.velocity * -1 * 0.8f, ForceMode2D.Impulse);
+        body.AddForce(body.velocity * -1 * 0.99f, ForceMode2D.Impulse);
         AdjustRotation();
     }
 

@@ -48,6 +48,20 @@ public class Navigator : MonoBehaviour {
         }
     }
 
+    [SerializeField]
+    public float targetDistance {
+        get {
+            switch (navState) {
+                case NavState.Orbiting:
+                case NavState.MovingToPoint:
+                    return Vector3.Distance(targetPoint, transform.position);
+                case NavState.MovingToTarget:
+                    return Vector3.Distance(destination.position, transform.position);
+            }
+            return 0f;
+        }
+    }
+
     private bool CloseTo(Vector3 pos) {
         var heading = pos - transform.position;
         return heading.sqrMagnitude <= arrivalDistance * arrivalDistance;
@@ -70,7 +84,7 @@ public class Navigator : MonoBehaviour {
             orbitPoints.Add(pos + v);
             debugger.DrawPoint(pos + v, Color.yellow);
         }
-        Vector3 closest = orbitPoints.MinBy(x => Vector3.SqrMagnitude(pos - x)).First();
+        Vector3 closest = orbitPoints.MinBy(x => Vector3.SqrMagnitude(transform.position - x)).First();
         int pathStart = orbitPoints.FindIndex(x => x == closest);
         var pathInit = orbitPoints.Skip(pathStart).ToList();
         var pathTail = orbitPoints.Take(pathStart).ToList();
