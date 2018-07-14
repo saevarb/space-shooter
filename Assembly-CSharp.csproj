@@ -60,14 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Behaviors\Debugger.cs" />
-    <Compile Include="Assets\Behaviors\HpDisplay.cs" />
-    <Compile Include="Assets\Behaviors\Killable.cs" />
-    <Compile Include="Assets\Behaviors\Laser.cs" />
-    <Compile Include="Assets\Behaviors\Navigator.cs" />
-    <Compile Include="Assets\Behaviors\Pathfinder.cs" />
-    <Compile Include="Assets\Behaviors\PhysicsMover.cs" />
-    <Compile Include="Assets\Behaviors\Weapon.cs" />
+    <Compile Include="Assets\Components\Debugger.cs" />
+    <Compile Include="Assets\Components\HpDisplay.cs" />
+    <Compile Include="Assets\Components\Killable.cs" />
+    <Compile Include="Assets\Components\Laser.cs" />
+    <Compile Include="Assets\Components\Navigator.cs" />
+    <Compile Include="Assets\Components\Pathfinder.cs" />
+    <Compile Include="Assets\Components\PhysicsMover.cs" />
+    <Compile Include="Assets\Components\Weapon.cs" />
     <Compile Include="Assets\Prefabs\Asteroid.cs" />
     <Compile Include="Assets\Prefabs\DmgText.cs" />
     <Compile Include="Assets\Prefabs\Drone.cs" />

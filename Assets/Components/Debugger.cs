@@ -23,9 +23,11 @@ public class Debugger : MonoBehaviour {
     public void DrawPoint(Vector3 p, Color color) {
         if(!dots.ContainsKey(p)) {
             dots.Add(p, color);
-            SpriteRenderer dot = Instantiate<SpriteRenderer>(debugPoint, p, Quaternion.identity);
-            dot.color = color;
-            dotObjects.Add(p, dot);
+            //SpriteRenderer dot = Instantiate<SpriteRenderer>(debugPoint, p, Quaternion.identity);
+            //dot.color = color;
+            //dotObjects.Add(p, dot);
+        } else {
+            dots[p] = color;
         }
     }
     public void DrawPoints(IEnumerable<Vector3> ps, Color color) {
@@ -57,6 +59,19 @@ public class Debugger : MonoBehaviour {
             var line = kv.Key;
             var color = kv.Value;
             Debug.DrawLine(line.Item1, line.Item2, color);
+        }
+        foreach (var kv in dots) {
+            var p = kv.Key;
+            var color = kv.Value;
+            float offset = 0.08f;
+            var topLeft = offset * (Vector3.left + Vector3.up) + p;
+            var bottomLeft = offset * (Vector3.left + Vector3.down) + p;
+            var topRight = offset * (Vector3.right + Vector3.up) + p;
+            var bottomRight = offset * (Vector3.right + Vector3.down) + p;
+            Debug.DrawLine(topLeft, topRight, color);
+            Debug.DrawLine(topRight, bottomRight, color);
+            Debug.DrawLine(bottomRight, bottomLeft, color);
+            Debug.DrawLine(bottomLeft, topLeft, color);
         }
 	}
 }

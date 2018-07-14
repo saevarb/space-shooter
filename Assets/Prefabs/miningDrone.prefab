@@ -96,7 +96,7 @@ MonoBehaviour:
   weaponDuration: 1
   weaponCooldown: 0.3
   weaponDamage: 1
-  weaponRange: 4
+  weaponRange: 1.12
   laserPrefab: {fileID: 1044676145613784, guid: 54828eaceadaeb04e99b2bba1e1bbb78,
     type: 2}
 --- !u!114 &114473139814760058
@@ -112,8 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 114677937506509682}
   mover: {fileID: 114577867527572068}
-  arrivalDistance: 1
-  orbitDistance: 2
   pathRecalculateTimer: 4
 --- !u!114 &114501341913632934
 MonoBehaviour:
@@ -141,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5528e25a594d544a6d84e98da25142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5.73
-  turningSpeed: 4
+  maxSpeed: 10
+  turningSpeed: 20
   debug: 1
 --- !u!114 &114677937506509682
 MonoBehaviour:
@@ -155,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighborCount: 6
-  stepSize: 0.32
+  neighborCount: 4
+  stepSize: 0.25
   debug: 1
 --- !u!212 &212872352623378964
 SpriteRenderer:

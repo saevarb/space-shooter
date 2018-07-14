@@ -30,14 +30,34 @@ public class Pathfinder : MonoBehaviour {
                 return result;
         }
     }
+
+    private Vector3 ClosestOnGrid(Vector3 p) {
+        return GridAround(p).MinBy(x => (p - x).sqrMagnitude).First();
+    }
+
+    private IEnumerable<Vector3> GridAround(Vector3 p) {
+        var start = new Vector3((int)(p.x), (int)(p.y), p.z);
+        for (float i = 0; i < 1; i += stepSize) {
+            for (float j = 0; j < 1; j += stepSize) {
+                yield return start + new Vector3(i, j, 0);
+            }
+        }
+    }
     // Use this for initialization
     private List<Vector3> GenerateNeighbors(Vector3 cur) {
         List<Vector3> neighbors = new List<Vector3>();
-        for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / neighborCount) {
-            Vector3 v = stepSize * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            //Debug.DrawRay(cur, v, Color.green);
-            neighbors.Add(cur + v);
+        var start = new Vector3(Mathf.Round(cur.x), Mathf.Round(cur.y), cur.z);
+        float offset = neighborCount * stepSize;
+        for (float i = -offset; i < offset; i += stepSize) {
+            for (float j = -offset; j < offset; j += stepSize) {
+                neighbors.Add(start + new Vector3(i, j, 0));
+            }
         }
+        //for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / neighborCount) {
+        //    Vector3 v = stepSize * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        //    //Debug.DrawRay(cur, v, Color.green);
+        //    neighbors.Add(cur + v);
+        //}
         return neighbors;
     }
 
@@ -65,6 +85,7 @@ public class Pathfinder : MonoBehaviour {
         gScore.Clear();
         fScore.Clear();
         var start = transform.position;
+        start = ClosestOnGrid(start);
 
         gScore.Add(start, 0);
         fScore.Add(start, Vector3.SqrMagnitude(start - dest));
@@ -76,18 +97,23 @@ public class Pathfinder : MonoBehaviour {
         while (openSet.Count != 0) {
             current = openSet.First().Value;
             openSet.RemoveAt(0);
-            explored++;
-            if (Vector3.SqrMagnitude(current - dest) <= 1) {
-                Debug.Log("Nodes explored: " + explored);
-                return ReconstructPath(current);
-            }
-            closedSet.Add(current);
 
-            List<Vector3> neighbors = GenerateNeighbors(current);
+            if (openSet.ContainsValue(current))
+                continue;
+            explored++;
             if (debug) {
                 //debugger.DrawPoints(neighbors, Color.white);
                 debugger.DrawPoint(current, Color.black);
             }
+
+            if (Vector3.SqrMagnitude(current - dest) <= 1) {
+                Debug.Log("Nodes explored: " + explored);
+                return ReconstructPath(current);
+            }
+
+            closedSet.Add(current);
+
+            List<Vector3> neighbors = GenerateNeighbors(current);
             foreach (Vector3 neighbor in neighbors) {
                 if (closedSet.Contains(neighbor)) {
                     continue;
@@ -105,9 +131,6 @@ public class Pathfinder : MonoBehaviour {
                     closedSet.Add(neighbor);
                     continue;
                 }
-                if (openSet.ContainsValue(neighbor)) {
-                    continue;
-                }
                 float tentativeGScore = GetScore(gScore, current);
                 tentativeGScore += neighDist;
                 if (tentativeGScore >= GetScore(gScore, neighbor)) {
@@ -116,7 +139,9 @@ public class Pathfinder : MonoBehaviour {
                 cameFrom[neighbor] = current;
                 gScore[neighbor] = tentativeGScore;
                 fScore[neighbor] = (float)gScore[neighbor] + Vector3.SqrMagnitude(neighbor - dest);
-                openSet.Add(GetScore(fScore, neighbor), neighbor);
+                if (!openSet.ContainsValue(neighbor)) {
+                    openSet.Add(GetScore(fScore, neighbor), neighbor);
+                }
             }
         }
         return null;
@@ -124,7 +149,7 @@ public class Pathfinder : MonoBehaviour {
 
     private void Awake() {
         closedSet = new HashSet<Vector3>();
-        openSet = new SortedList<float, Vector3>(new DuplicateKeyComparer<float>()); 
+        openSet = new SortedList<float, Vector3>(new DuplicateKeyComparer<float>());
         cameFrom = new Dictionary<Vector3, Vector3>();
         gScore = new Dictionary<Vector3, float>();
         fScore = new Dictionary<Vector3, float>();
