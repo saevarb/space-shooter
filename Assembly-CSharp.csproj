@@ -61,12 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Components\Debugger.cs" />
+    <Compile Include="Assets\Components\GameManager.cs" />
+    <Compile Include="Assets\Components\HasHealth.cs" />
     <Compile Include="Assets\Components\HpDisplay.cs" />
-    <Compile Include="Assets\Components\Killable.cs" />
     <Compile Include="Assets\Components\Laser.cs" />
+    <Compile Include="Assets\Components\MonoSingleton.cs" />
     <Compile Include="Assets\Components\Navigator.cs" />
     <Compile Include="Assets\Components\Pathfinder.cs" />
     <Compile Include="Assets\Components\PhysicsMover.cs" />
+    <Compile Include="Assets\Components\Targetable.cs" />
     <Compile Include="Assets\Components\Weapon.cs" />
     <Compile Include="Assets\Prefabs\Asteroid.cs" />
     <Compile Include="Assets\Prefabs\DmgText.cs" />

@@ -53,7 +53,7 @@ abstract public class Weapon : MonoBehaviour {
                 if (weaponTimer <= 0) { // If the timer has expired, we are done shooting for now
                     weaponTimer = weaponCooldown;
                     weaponState = WeaponState.CoolingDown;
-                    curTarget.GetComponent<Killable>().ApplyDamage(weaponDamage);
+                    curTarget.GetComponent<HasHealth>().ApplyDamage(weaponDamage);
                     OnDoneFiring();
                 }
                 break;

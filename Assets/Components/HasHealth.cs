@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Killable : MonoBehaviour {
+public class HasHealth : MonoBehaviour {
 
-    public float hp;
+    public float health;
     public Text dmgText;
     private Text lastText = null;
     private float? lastDamageTime;
@@ -40,8 +40,8 @@ public class Killable : MonoBehaviour {
             Debug.Log("Creating damage numbers because no last time");
             CreateDamageNumber(dmg);
         }
-        hp -= dmg;
-        if(hp <= 0) Kill();
+        health -= dmg;
+        if(health <= 0) Kill();
     }
 
     public void Kill()

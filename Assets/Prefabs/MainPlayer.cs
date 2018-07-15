@@ -42,10 +42,5 @@ public class MainPlayer : MonoBehaviour {
             body.velocity = body.velocity.normalized / (body.velocity.magnitude / maxSpeed);
     }
 
-    public void SetTarget(GameObject obj) {
-        Debug.Log("Setting target");
-        foreach(Drone d in drones) {
-            d.MoveToTarget(obj);
-        }
-    }
+ 
 }

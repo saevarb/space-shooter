@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(HasHealth))]
 public class Asteroid : MonoBehaviour {
-    private GameObject playerShip;
     // Use this for initialization
-    void Start () {
-        playerShip = GameObject.Find("mainPlayer");
-    }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
     }
 
-    void OnMouseDown() {
-        var mp = playerShip.GetComponent<MainPlayer>();
-        mp.SetTarget(gameObject);
-    }
-
+   
     private void OnDestroy() {
     }
 
+    
 }

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class HpDisplay : MonoBehaviour {
 
     private Text hpText;
-    private Killable killable;
+    private HasHealth killable;
 	// Use this for initialization
 	void Awake () {
         GameObject canvasObject = GameObject.Find("dmgCanvas");
         Canvas dmgCanvas = canvasObject.GetComponent<Canvas>();
 
-        killable = GetComponent<Killable>();
+        killable = GetComponent<HasHealth>();
 
         if(killable != null) {
             GameObject tObj = new GameObject();
@@ -33,7 +33,7 @@ public class HpDisplay : MonoBehaviour {
     private void UpdateText() {
         if(killable != null) {
             hpText.gameObject.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(-.15f, .08f, 0));
-            hpText.text = killable.hp.ToString("0.0");
+            hpText.text = killable.health.ToString("0.0");
         }
     }
 	
