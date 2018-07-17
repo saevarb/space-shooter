@@ -17,7 +17,7 @@ public class Targetable : MonoBehaviour {
     }
 
     public Info GetInfo() {
-        return new Info { health = health.health, desc = "An asteroid", name = gameObject.name };
+       return new Info { health = health.health, desc = "An asteroid", name = gameObject.name };
     }
     void OnMouseDown() {
         GameManager.Instance.SetTarget(this);
