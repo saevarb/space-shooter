@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(LineRenderer))]
 public class GameManager : MonoSingleton<GameManager> {
 
     public Text hpText;
@@ -10,24 +12,18 @@ public class GameManager : MonoSingleton<GameManager> {
     public GameObject noTargetPanel;
     public GameObject targetPanel;
     public GameObject dronePrefab;
+    public float targetCircleRadius;
 
     private Targetable curTarget;
+    private LineRenderer targetCircle;
     private List<Drone> drones;
 
     public GameManager() { }
 
-    public void SetTarget(Targetable obj) {
-        Debug.Log("Setting target");
-
-        curTarget = obj;
-        //foreach (Drone d in drones) {
-        //    d.MoveToTarget(obj);
-        //}
-    }
-
     void Start() {
         Debug.Log("Game manager starting ..");
         drones = new List<Drone>();
+        targetCircle = GetComponent<LineRenderer>();
 
         for(int i = 0; i < 1; i++) {
             GameObject drone = Instantiate(dronePrefab) as GameObject;
@@ -57,10 +53,41 @@ public class GameManager : MonoSingleton<GameManager> {
         }
 
         if(Input.GetKey("a")) {
+            Debug.Log("attacking target");
             foreach(Drone d in drones) {
                 if(curTarget != null)
                     d.MoveToTarget(curTarget.gameObject);
             }
         }
     }
+
+    public void SetTarget(Targetable obj) {
+        Debug.Log("Setting target");
+
+        curTarget = obj;
+
+        int vertexCount = 32;
+        var pos = curTarget.transform.position;
+        var circlePoints = new List<Vector3>();
+        var collider = obj.GetComponent<Collider2D>();
+        if(collider) {
+            targetCircleRadius = collider.bounds.size.magnitude;
+        }
+        for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / vertexCount) {
+            Vector3 v = targetCircleRadius * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            circlePoints.Add(pos + v);
+        }
+        circlePoints.Add(circlePoints[0]);
+
+        targetCircle.positionCount = vertexCount + 1;
+        targetCircle.SetPositions(circlePoints.ToArray());
+
+        targetCircle.startColor = Color.black;
+        targetCircle.endColor = Color.black;
+
+        targetCircle.startWidth = .1f;
+        targetCircle.endWidth = .1f;
+
+    }
+
 }

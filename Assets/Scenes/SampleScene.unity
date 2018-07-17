@@ -1254,6 +1254,11 @@ Prefab:
       propertyPath: targetPanel
       value: 
       objectReference: {fileID: 2086611747}
+    - target: {fileID: 114726900850893668, guid: 85c93e0403009774e848827ac0f7b675,
+        type: 2}
+      propertyPath: targetCircleRadius
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c93e0403009774e848827ac0f7b675, type: 2}
   m_IsPrefabAsset: 0

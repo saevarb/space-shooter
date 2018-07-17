@@ -10,6 +10,8 @@ public class AsteroidExplosion : MonoBehaviour {
     void Start () {
         ps = GetComponent<ParticleSystem>();
         ps.startLifetime = duration;
+        Debug.Log($"explosion starting {ps}");
+        ps.transform.position = this.transform.position;
         ps.Play();
     }
 

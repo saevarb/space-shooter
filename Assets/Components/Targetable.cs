@@ -8,7 +8,6 @@ public struct Info {
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(HasHealth))]
-
 public class Targetable : MonoBehaviour {
     private HasHealth health;
 
