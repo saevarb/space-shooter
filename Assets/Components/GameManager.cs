@@ -24,6 +24,13 @@ public class GameManager : MonoSingleton<GameManager> {
         Debug.Log("Game manager starting ..");
         drones = new List<Drone>();
         targetCircle = GetComponent<LineRenderer>();
+        targetCircle.sortingLayerName = "Default";
+        targetCircle.material = new Material(Shader.Find("Sprites/Default"));
+        targetCircle.startColor = Color.cyan;
+        targetCircle.endColor = Color.cyan;
+        targetCircle.startWidth = .05f;
+        targetCircle.endWidth = .05f;
+
 
         for(int i = 0; i < 1; i++) {
             GameObject drone = Instantiate(dronePrefab) as GameObject;
@@ -38,6 +45,22 @@ public class GameManager : MonoSingleton<GameManager> {
             noTargetPanel.SetActive(true);
             targetPanel.SetActive(false);
         } else {
+            int vertexCount = 32;
+            var pos = curTarget.transform.position;
+            var circlePoints = new List<Vector3>();
+            var collider = curTarget.GetComponent<Collider2D>();
+            if(collider) {
+                targetCircleRadius = collider.bounds.size.magnitude;
+            }
+            for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / vertexCount) {
+                Vector3 v = targetCircleRadius * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                circlePoints.Add(pos + v);
+            }
+            circlePoints.Add(circlePoints[0]);
+
+            targetCircle.positionCount = vertexCount + 1;
+            targetCircle.SetPositions(circlePoints.ToArray());
+
             noTargetPanel.SetActive(false);
             targetPanel.SetActive(true);
             hpText.text = curTarget.GetComponent<HasHealth>().health.ToString();
@@ -65,28 +88,6 @@ public class GameManager : MonoSingleton<GameManager> {
         Debug.Log("Setting target");
 
         curTarget = obj;
-
-        int vertexCount = 32;
-        var pos = curTarget.transform.position;
-        var circlePoints = new List<Vector3>();
-        var collider = obj.GetComponent<Collider2D>();
-        if(collider) {
-            targetCircleRadius = collider.bounds.size.magnitude;
-        }
-        for (float angle = 0; angle <= Mathf.PI * 2; angle += 2 * Mathf.PI / vertexCount) {
-            Vector3 v = targetCircleRadius * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            circlePoints.Add(pos + v);
-        }
-        circlePoints.Add(circlePoints[0]);
-
-        targetCircle.positionCount = vertexCount + 1;
-        targetCircle.SetPositions(circlePoints.ToArray());
-
-        targetCircle.startColor = Color.black;
-        targetCircle.endColor = Color.black;
-
-        targetCircle.startWidth = .1f;
-        targetCircle.endWidth = .1f;
 
     }
 
