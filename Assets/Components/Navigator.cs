@@ -10,7 +10,8 @@ public class Navigator : MonoBehaviour {
     enum NavState {
         MovingToPoint,
         MovingToTarget,
-        Orbiting
+        Orbiting,
+        Follow
     }
 
     public Pathfinder pathfinder;
@@ -55,6 +56,7 @@ public class Navigator : MonoBehaviour {
                 case NavState.Orbiting:
                 case NavState.MovingToPoint:
                     return Vector3.Distance(targetPoint, transform.position);
+                case NavState.Follow:
                 case NavState.MovingToTarget:
                     return Vector3.Distance(destination.position, transform.position);
             }
@@ -123,6 +125,17 @@ public class Navigator : MonoBehaviour {
         arrivalDistance = arrDist;
     }
 
+    public void Follow(GameObject target, float followDistance) {
+        navState = NavState.Follow;
+        curPath = pathfinder.FindPath(target.transform.position);
+        if (curPath == null)
+            return;
+        destination = target.transform;
+        curNode = curPath.Dequeue();
+        arrivalDistance = followDistance;
+        isActive_ = true;
+    }
+
     private void ResetState() {
         curPath = null;
         isActive_ = false;
@@ -168,6 +181,21 @@ public class Navigator : MonoBehaviour {
                 }
                 break;
             }
+            case NavState.Follow: {
+                if(CloseTo(destination.position)) {
+                    mover.Break();
+                    return;
+                } else if (curPath.Count == 0) {
+                    Follow(destination.gameObject, arrivalDistance);
+                    return;
+                }
+                if (CloseTo(curNode) && curPath.Count != 0) {
+                    curNode = curPath.Dequeue();
+                } else {
+                    mover.MoveToPoint(curNode);
+                }
+                break;
+            }
             case NavState.Orbiting: {
                 if(CloseTo(curNode)) {
                     curPath.Enqueue(curNode);
@@ -180,28 +208,6 @@ public class Navigator : MonoBehaviour {
             default:
                 break;
         }
-         //if (!isActive || curPath == null)
-         //    return;
-         //if(!HasArrived() && curPath.Count == 0) {
-         //    switch(navState) {
-         //        case NavState.MovingToPoint:
-         //            SetDestination(targetPoint, arrivalDistance);
-         //            break;
-         //        case NavState.MovingToTarget:
-         //            SetDestination(destination, arrivalDistance);
-         //            break;
-         //    }
-         //    return;
-         //} else if (isActive && curPath.Count > 0) {
-         //    if(CloseTo(curNode)) {
-         //        curNode = curPath.Dequeue();
-         //    } else {
-         //        mover.MoveToPoint(curNode);
-         //    }
-         //} else if (HasArrived() && curPath.Count == 0) {
-         //    mover.Break();
-         //    ResetState();
-         //}
     }
 
 }

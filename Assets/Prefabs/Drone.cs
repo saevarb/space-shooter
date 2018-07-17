@@ -78,13 +78,13 @@ public class Drone : MonoBehaviour {
 
     private void MineAsteroid() {
         state = State.MiningAsteroid;
-        navigator.Orbit(currentTarget, weapon.weaponRange);
+        navigator.Follow(currentTarget, weapon.weaponRange);
         weapon.StartFiring(currentTarget);
     }
 
     private void AttackTarget() {
         state = State.AttackingTarget;
-        navigator.Orbit(currentTarget, weapon.weaponRange);
+        navigator.Follow(currentTarget, weapon.weaponRange);
         weapon.StartFiring(currentTarget);
     }
 
@@ -103,7 +103,7 @@ public class Drone : MonoBehaviour {
 
     void Idle() {
         state = State.Idle;
-        navigator.Orbit(playerShip, 1f);
+        navigator.Follow(playerShip, 1f);
         weapon.StopFiring();
     }
 

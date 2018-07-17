@@ -65,6 +65,10 @@ public class Pathfinder : MonoBehaviour {
         Stack<Vector3> pathStack = new Stack<Vector3>(); ;
         do {
             pathStack.Push(current);
+            if(!cameFrom.ContainsKey(current)) {
+                Debug.LogWarning($"Could not find {current} in cameFrom");
+                break;
+            }
             current = (Vector3)cameFrom[current];
         } while (cameFrom.ContainsKey(current));
         return new Queue<Vector3>(pathStack);
