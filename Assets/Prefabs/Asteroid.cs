@@ -5,15 +5,9 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(HasHealth))]
 public class Asteroid : MonoBehaviour {
-    // Use this for initialization
+    public ParticleSystem explosionPrefab;
 
-    // Update is called once per frame
-    void Update() {
-    }
-
-   
     private void OnDestroy() {
+        Instantiate(explosionPrefab, this.transform);
     }
-
-    
 }

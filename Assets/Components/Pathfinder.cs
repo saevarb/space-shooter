@@ -111,7 +111,7 @@ public class Pathfinder : MonoBehaviour {
             }
 
             if (Vector3.SqrMagnitude(current - dest) <= 1) {
-                Debug.Log("Nodes explored: " + explored);
+                Debug.LogWarning("Nodes explored: " + explored);
                 return ReconstructPath(current);
             }
 

@@ -182,17 +182,10 @@ public class Navigator : MonoBehaviour {
                 break;
             }
             case NavState.Follow: {
-                if(CloseTo(destination.position)) {
-                    mover.Break();
+                if(destination == null) {
+                    ResetState();
+                    Debug.LogWarning("In follow state but have no destination");
                     return;
-                } else if (curPath.Count == 0) {
-                    Follow(destination.gameObject, arrivalDistance);
-                    return;
-                }
-                if (CloseTo(curNode) && curPath.Count != 0) {
-                    curNode = curPath.Dequeue();
-                } else {
-                    mover.MoveToPoint(curNode);
                 }
                 break;
             }
