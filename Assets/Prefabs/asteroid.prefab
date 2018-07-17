@@ -8,23 +8,24 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1581291349974660}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1581291349974660
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4104286298673420}
   - component: {fileID: 212404862103738364}
   - component: {fileID: 114206502406930952}
   - component: {fileID: 114819197704820782}
+  - component: {fileID: 114078290344098398}
   - component: {fileID: 50581388017844530}
   - component: {fileID: 60185037026271108}
-  - component: {fileID: 114078290344098398}
+  - component: {fileID: 114529014241472046}
   m_Layer: 0
   m_Name: asteroid
   m_TagString: Mineable
@@ -35,7 +36,7 @@ GameObject:
 --- !u!4 &4104286298673420
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -49,7 +50,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_BodyType: 0
@@ -68,7 +69,7 @@ Rigidbody2D:
 --- !u!60 &60185037026271108
 PolygonCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_Enabled: 1
@@ -98,7 +99,7 @@ PolygonCollider2D:
 --- !u!114 &114078290344098398
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_Enabled: 1
@@ -109,7 +110,7 @@ MonoBehaviour:
 --- !u!114 &114206502406930952
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_Enabled: 1
@@ -117,10 +118,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d15bc265d54309bb32c80ac1e2f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114529014241472046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581291349974660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af51eff378dc304abef986b0822f9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114819197704820782
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_Enabled: 1
@@ -128,12 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d2e8afd2a946b49af004151103d442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  health: 10
   dmgText: {fileID: 114179348928988082, guid: a23f3a069278e1142805c8503863fa8b, type: 2}
 --- !u!212 &212404862103738364
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581291349974660}
   m_Enabled: 1
@@ -175,3 +187,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

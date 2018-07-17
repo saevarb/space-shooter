@@ -68,7 +68,17 @@
      <Compile Include="Assets\Prefabs\DmgText.cs" />
      <Compile Include="Assets\Prefabs\Drone.cs" />
      <Compile Include="Assets\Prefabs\MainPlayer.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Constant.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Enum.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_IconUtility.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_IgnoreSnapAttribute.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Util.cs" />
+     <Compile Include="Assets\ProCore\ProGrids\MonoBehaviour\pg_IgnoreSnap.cs" />
+     <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
+     <None Include="Assets\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
      <None Include="Assets\Galaxia Sprite Pack #1\README.txt" />
+     <None Include="Assets\ProCore\ProGrids\About\changelog.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/sbrg/Dropbox/programming/csharp/space-shooter/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

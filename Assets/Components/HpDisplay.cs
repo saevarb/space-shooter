@@ -9,7 +9,7 @@ public class HpDisplay : MonoBehaviour {
     private HasHealth killable;
 	// Use this for initialization
 	void Awake () {
-        GameObject canvasObject = GameObject.Find("dmgCanvas");
+        GameObject canvasObject = GameObject.Find("mainCanvas");
         Canvas dmgCanvas = canvasObject.GetComponent<Canvas>();
 
         killable = GetComponent<HasHealth>();

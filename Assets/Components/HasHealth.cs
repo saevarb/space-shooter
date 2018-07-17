@@ -12,7 +12,7 @@ public class HasHealth : MonoBehaviour {
     private float? lastDamage = null;
 
     private void CreateDamageNumber(float dmg) {
-        GameObject canvasObject = GameObject.Find("dmgCanvas");
+        GameObject canvasObject = GameObject.Find("mainCanvas");
         Canvas dmgCanvas = canvasObject.GetComponent<Canvas>();
         GameObject tObj = Instantiate(dmgText.gameObject) as GameObject;
         Text t = tObj.GetComponent<Text>();
@@ -51,9 +51,9 @@ public class HasHealth : MonoBehaviour {
 
     void Start () {
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }
