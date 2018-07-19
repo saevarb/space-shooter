@@ -109,6 +109,7 @@ public class GameManager : MonoSingleton<GameManager> {
         Debug.Log("Setting target");
 
         curTarget = obj;
+        obj.GetComponent<MeshRenderer>().material.shader = Shader.Find("Shaders/selectionShader");
 
     }
 
