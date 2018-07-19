@@ -23,8 +23,12 @@ GameObject:
   - component: {fileID: 114959739300724594}
   - component: {fileID: 114541078121614578}
   - component: {fileID: 114065056533635832}
+  - component: {fileID: 114203469105926472}
+  - component: {fileID: 114620390846751610}
+  - component: {fileID: 114467111648765820}
   - component: {fileID: 60156884360088018}
   - component: {fileID: 50986525839232122}
+  - component: {fileID: 114706925696035678}
   m_Layer: 0
   m_Name: mainPlayer
   m_TagString: Player
@@ -103,6 +107,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af51eff378dc304abef986b0822f9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114203469105926472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504659379968612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bfc7453d2ca884bacafecc613f267c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathfinder: {fileID: 114467111648765820}
+  mover: {fileID: 114620390846751610}
+  pathRecalculateTimer: 1
+--- !u!114 &114467111648765820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504659379968612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca8e861b940b434db40297e0b366ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighborCount: 5
+  stepSize: 1
+  debug: 1
 --- !u!114 &114541078121614578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +148,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   dmgText: {fileID: 114179348928988082, guid: a23f3a069278e1142805c8503863fa8b, type: 2}
+--- !u!114 &114620390846751610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504659379968612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5528e25a594d544a6d84e98da25142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4
+  turningSpeed: 4.16
+  debug: 0
+--- !u!114 &114706925696035678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504659379968612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5ff2698018aac4fa24a66730e897d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114959739300724594
 MonoBehaviour:
   m_ObjectHideFlags: 1

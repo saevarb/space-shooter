@@ -12,17 +12,23 @@ public class GameManager : MonoSingleton<GameManager> {
     public GameObject noTargetPanel;
     public GameObject targetPanel;
     public GameObject dronePrefab;
+    public MainPlayer player;
     public float targetCircleRadius;
 
     private Targetable curTarget;
     private LineRenderer targetCircle;
     private List<Drone> drones;
 
+    private bool oneClick = false;
+    private float lastClickTime;
+
     public GameManager() { }
 
     void Start() {
         Debug.Log("Game manager starting ..");
+
         drones = new List<Drone>();
+
         targetCircle = GetComponent<LineRenderer>();
         targetCircle.sortingLayerName = "Default";
         targetCircle.material = new Material(Shader.Find("Sprites/Default"));
@@ -41,6 +47,19 @@ public class GameManager : MonoSingleton<GameManager> {
     }
 
     void Update() {
+        if(Input.GetMouseButtonDown(0)) {
+            if(!oneClick) {
+                lastClickTime = Time.time;
+                oneClick = true;
+            } else {
+                if (Time.time - lastClickTime <= 0.5) {
+                    Debug.LogWarning("Double click");
+                    var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    player.MoveToPoint(pos);
+                }
+                oneClick = false;
+            }
+        }
         if (curTarget == null) {
             noTargetPanel.SetActive(true);
             targetPanel.SetActive(false);
