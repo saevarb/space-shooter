@@ -63,6 +63,7 @@ public class GameManager : MonoSingleton<GameManager> {
         if (curTarget == null) {
             noTargetPanel.SetActive(true);
             targetPanel.SetActive(false);
+            targetCircle.enabled = false;
         } else {
             int vertexCount = 32;
             var pos = curTarget.transform.position;
@@ -79,6 +80,7 @@ public class GameManager : MonoSingleton<GameManager> {
 
             targetCircle.positionCount = vertexCount + 1;
             targetCircle.SetPositions(circlePoints.ToArray());
+            targetCircle.enabled = true;
 
             noTargetPanel.SetActive(false);
             targetPanel.SetActive(true);

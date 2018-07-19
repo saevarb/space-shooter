@@ -113,9 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20072d78619c3c944a4d05451a9d21f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDuration: 0.3
-  weaponCooldown: 0.3
-  weaponDamage: 4.24
+  weaponDuration: 0.18
+  weaponCooldown: 0.21
+  weaponDamage: 15.12
   weaponRange: 1.12
   laserPrefab: {fileID: 1044676145613784, guid: 54828eaceadaeb04e99b2bba1e1bbb78,
     type: 2}

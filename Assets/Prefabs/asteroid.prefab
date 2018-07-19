@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 114529014241472046}
   - component: {fileID: 114669975796746042}
   - component: {fileID: 114883681607684614}
+  - component: {fileID: 114506138011127184}
   - component: {fileID: 54675145469749522}
   - component: {fileID: 135278396426049866}
   m_Layer: 0
@@ -321,6 +322,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29e8a89ad757b04e9dfc7aacb8a43cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114506138011127184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1581291349974660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728464afa2e5549ccb28a85709b743b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0
+  explosionPrefab: {fileID: 198237862738733856, guid: bdc32f963f7034c84b5dba16670d4936,
+    type: 2}
 --- !u!114 &114529014241472046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,8 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d15bc265d54309bb32c80ac1e2f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 198237862738733856, guid: bdc32f963f7034c84b5dba16670d4936,
-    type: 2}
 --- !u!135 &135278396426049866
 SphereCollider:
   m_ObjectHideFlags: 1

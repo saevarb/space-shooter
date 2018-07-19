@@ -5,10 +5,4 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(HasHealth))]
 public class Asteroid : MonoBehaviour {
-    public ParticleSystem explosionPrefab;
-
-    private void OnDestroy() {
-        Debug.Log("Instantiating explosion");
-        Instantiate(explosionPrefab, this.transform);
-    }
 }

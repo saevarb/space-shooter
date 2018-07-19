@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4052605388838590}
   - component: {fileID: 198237862738733856}
+  - component: {fileID: 114619166490267896}
   - component: {fileID: 199810571900732724}
-  - component: {fileID: 114703239420521730}
   m_Layer: 0
   m_Name: asteroidExplosion
   m_TagString: Untagged
@@ -36,13 +36,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983220687082840}
   m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -18.349998, y: -1.12, z: 0}
+  m_LocalPosition: {x: -15.611497, y: -1.3886249, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
---- !u!114 &114703239420521730
+--- !u!114 &114619166490267896
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,10 +50,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1983220687082840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728464afa2e5549ccb28a85709b743b9, type: 3}
+  m_Script: {fileID: 11500000, guid: a0a2622f6de7d436594ba05b150be2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.972
 --- !u!198 &198237862738733856
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -61,12 +60,12 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983220687082840}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -133,7 +132,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -186,7 +185,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -677,7 +676,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 10
+    type: 0
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -1000,8 +999,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0.9645996
+          time: 0.004878998
+          value: 0.4245987
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1009,7 +1008,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.1321454
+          time: 0.7512127
           value: 0
           inSlope: 0.2976679
           outSlope: 0.2976679
@@ -1314,7 +1313,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -2039,8 +2038,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.015382735
-          value: 0.99409485
+          time: 0
+          value: 1
           inSlope: 0.18879028
           outSlope: 0.18879028
           tangentMode: 0
@@ -2048,13 +2047,13 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.7878846
         - serializedVersion: 3
-          time: 0.11556217
-          value: -0.0029740334
-          inSlope: 0.6041056
-          outSlope: 0.6041056
+          time: 1
+          value: 1
+          inSlope: 0.2440477
+          outSlope: 0.2440477
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.1535985
+          inWeight: 0.20487803
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4681,7 +4680,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 4
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -4696,7 +4695,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

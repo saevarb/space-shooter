@@ -5,19 +5,27 @@ using UnityEngine;
 public class AsteroidExplosion : MonoBehaviour {
     [Range(0.1f, 1f)]
     public float duration;
-    private ParticleSystem ps;
+    public ParticleSystem explosionPrefab;
+
+    void Awake() {
+    }
 
     void Start () {
-        ps = GetComponent<ParticleSystem>();
-        ps.startLifetime = duration;
-        Debug.Log($"explosion starting {ps}");
-        ps.transform.position = this.transform.position;
-        ps.Play();
     }
 
     void Update() {
-        if(!ps.IsAlive())
-            Destroy(gameObject);
+        // Debug.Log("updating ps");
+        // if(!ps.IsAlive())
+        //     Destroy(gameObject);
+    }
+
+
+    public void OnDestroy() {
+        Debug.LogWarning("Instantiating explosion");
+        var ps = Instantiate(explosionPrefab);
+        ps.transform.position = transform.position;
+        ps.Play();
+
     }
 
 }
