@@ -6,7 +6,7 @@ public struct Info {
     public string desc;
 }
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(HasHealth))]
 public class Targetable : MonoBehaviour {
     private HasHealth health;

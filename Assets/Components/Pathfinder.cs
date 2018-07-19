@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using MoreLinq;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Collider))]
 public class Pathfinder : MonoBehaviour {
     [Range(1, 60)]
     public int neighborCount = 5;
@@ -129,7 +129,7 @@ public class Pathfinder : MonoBehaviour {
                 filter.NoFilter();
 
                 //int hitCount = Physics2D.Raycast(new Vector2(current.x, current.y), new Vector2(neighbor.x, neighbor.y), filter, results, neighDist);
-                var foo = GetComponent<CircleCollider2D>();
+                var foo = GetComponent<SphereCollider>();
                 RaycastHit2D hit = Physics2D.CircleCast(new Vector2(current.x, current.y), foo.radius, neighHeading, neighDist);
                 if (hit && hit.collider.gameObject != this.gameObject) {
                     closedSet.Add(neighbor);

@@ -11,31 +11,31 @@ public class PhysicsMover : MonoBehaviour {
     public bool debug = false;
 
     private Vector3 heading;
-    private Rigidbody2D body;
+    private Rigidbody body;
 
     public void MoveToPoint(Vector3 dest) {
         var targetDirection = dest - transform.position;
         var newHeading = Vector3.RotateTowards(heading, targetDirection, turningSpeed * Time.fixedDeltaTime, 0);
         heading = newHeading;
-        body.AddForce(new Vector2(heading.x, heading.y).normalized, ForceMode2D.Impulse);
+        body.AddForce(new Vector2(heading.x, heading.y).normalized, ForceMode.Impulse);
         body.velocity = body.velocity.normalized / (body.velocity.magnitude / maxSpeed);
         AdjustRotation();
     }
 
     public void Break() {
-        body.AddForce(body.velocity * -1 * 0.99f, ForceMode2D.Impulse);
+        body.AddForce(body.velocity * -1 * 0.99f, ForceMode.Impulse);
         AdjustRotation();
     }
 
     // Use this for initialization
     void Start () {
         heading = new Vector2(0, 1);
-        body = GetComponent<Rigidbody2D>();
+        body = GetComponent<Rigidbody>();
 	}
 
     private void AdjustRotation() {
         if (heading.x != 0f)
-            body.rotation = heading.y / heading.x * Mathf.Rad2Deg;
+            body.rotation = Quaternion.Euler(0, 0, heading.y / heading.x * Mathf.Rad2Deg);
     }
 
     // Update is called once per frame
