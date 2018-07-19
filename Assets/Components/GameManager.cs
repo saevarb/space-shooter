@@ -12,9 +12,9 @@ public class GameManager : MonoSingleton<GameManager> {
     public GameObject targetPanel;
     public GameObject dronePrefab;
     public MainPlayer player;
-    public float targetCircleRadius;
 
-    private Targetable curTarget;
+    public Targetable curTarget;
+
     private List<Drone> drones;
 
     private bool oneClick = false;

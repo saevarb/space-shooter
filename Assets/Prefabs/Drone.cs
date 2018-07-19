@@ -24,7 +24,8 @@ public class Drone : MonoBehaviour {
     private void Awake() {
         Debug.Log($"Drone starting {state}");
         playerShip = GameObject.Find("mainPlayer");
-        transform.position = playerShip.GetComponent<Rigidbody2D>().position + UnityEngine.Random.insideUnitCircle * 1.5f;
+        var offset = UnityEngine.Random.insideUnitCircle * 1.5f;
+        transform.position = playerShip.GetComponent<Rigidbody>().position + new Vector3(offset.x, offset.y, 0);
     }
     void Start () {
         currentTarget = playerShip;
